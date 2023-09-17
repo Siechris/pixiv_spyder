@@ -15,7 +15,7 @@ import re
 # ==============================================================
 
 class pixiv_spyder:
-    def __init__(self,painter_author,g_email,g_password):
+    def __init__(self,painter_author,g_email,g_password,headers):
         # driver = webdriver.Chrome() 就是創建了一個 Chrome 瀏覽器的 WebDriver 實例，
         # 並將其賦值給變量 driver，這樣我們就可以通過 driver 來控制瀏覽器的行為了。
         self.driver = webdriver.Chrome()
@@ -30,10 +30,7 @@ class pixiv_spyder:
         # 圖片張數
         self.count = 0
         # 設定下載圖片的Referer请求头
-        self.headers = {
-            "Referer": "https://www.pixiv.net/",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
-        }
+        self.headers = headers
     # 打開網頁
     def start(self):
         # 使用driver.get()方法等待URL載入
@@ -253,8 +250,13 @@ if __name__=="__main__":
     email= ""
     # google 密碼
     password=""   
+    # 輸入自己的User-Agent
+    headers = {
+        "Referer": "https://www.pixiv.net/",
+        "User-Agent": ""
+    }
     keyword=input("輸入作者關鍵字 : ")
-    test = pixiv_spyder(keyword,email,password)
+    test = pixiv_spyder(keyword,email,password,headers)
     test.start()
     # 佐々
 
